@@ -26,7 +26,7 @@ https://awesome.naquadah.org/wiki/Vicious
 
 For Debian users you can install it through the package managemente system:
 
-$ apt-get install awesome awesome-extra
+`$ apt-get install awesome awesome-extra`
 
 Installation
 -------------
@@ -44,5 +44,8 @@ You can choose your prefered theme, some adjustments might be needed.
 If you find any problems feel free to fie an issue. 
 Feel free to contribute with pull requests. 
 
+Documenation
+------------
 
-
+You can find extra documentation about Awesome WM on its wiki page:
+https://awesome.naquadah.org/wiki/
