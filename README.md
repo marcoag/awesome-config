@@ -1,0 +1,48 @@
+This is my personal config for the Awesome WM. 
+
+It includes several themes, it is currently using wombat but you can choose any of them.
+
+System
+------
+
+Currently Running in a Debian stretch/sid for amd64 with:
+
+awesome v3.5.6 (For Those About To Rock)
+ • Build: Jun  5 2015 06:28:50 for x86_64 by gcc version 4.9.2 (root@minjo)
+ • Compiled against Lua 5.1.5 (running with Lua 5.1)
+ • D-Bus support: ✔
+
+Dependencies
+------------
+
+You need to have Awesome WM installed and vicious modular widget library. 
+
+**Awesome WM:** http://awesome.naquadah.org/wiki/Main_Page
+
+**Vicious:** http://git.sysphere.org/vicious/
+
+Here is some extra info about vicious: 
+https://awesome.naquadah.org/wiki/Vicious
+
+For Debian users you can install it through the package managemente system:
+
+$ apt-get install awesome awesome-extra
+
+Installation
+-------------
+To use this configuration, git clone this, and mv awesome-config to ~/.config/awesome
+
+  * `cd ~/.config; git clone https://github.com/marcoag/awesome-config.git awesome`
+  * `cd ~/.config/awesome`
+
+Configuration
+-------------
+
+You can choose your prefered theme, some adjustments might be needed.
+
+
+If you find any problems feel free to fie an issue. 
+Feel free to contribute with pull requests. 
+
+
+
