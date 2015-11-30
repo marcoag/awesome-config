@@ -13,9 +13,9 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 require("volume")
 require("monitor")
-
 -- Load Debian menu entries
 require("debian.menu")
+local scratch = require("scratch")
 
 awful.util.spawn_with_shell("xcompmgr -cF &")
 -- autostarting programs
@@ -92,10 +92,19 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {}
+--tags = {
+--    names = {"term", "web", "robo", "file", "irc", "vps", "spoty", "8", "9"}
+--    layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2] }
+--}
+
+ tags = {
+    names  = { "term", "www", "robo", "file", "irc", "vps", "spoty", 8, 9 },
+    layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2] }
+}
+
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8}, s, layouts[2])
+    tags[s] = awful.tag( tags.names, s, tags.layout)
 end
 -- }}}
 
@@ -139,6 +148,15 @@ memwidget = wibox.widget.textbox()
 -- Register widget
 vicious.register(memwidget, vicious.widgets.mem, "$1%", 13)
 
+--- }}}
+
+--- {{{ Battery state
+baticon = wibox.widget.imagebox()
+baticon:set_image(awful.util.getdir("config") .. "/icons/bat.png")
+-- Initialize widget
+batwidget = wibox.widget.textbox() 
+-- Register widget
+vicious.register(batwidget, vicious.widgets.bat, "$1$2", 61, "BAT0")
 --- }}}
 
 -- {{{ network widget
@@ -261,8 +279,6 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(memicon)
-    right_layout:add(memwidget)
     right_layout:add(separator)
     right_layout:add(neticon_down)
     right_layout:add(netwidget)
@@ -271,11 +287,16 @@ for s = 1, screen.count() do
     right_layout:add(volume_widget)
     right_layout:add(volicon)
     right_layout:add(separator)
-    right_layout:add(tzswidget)
+    right_layout:add(memwidget)
+    right_layout:add(memicon)
+    right_layout:add(separator)
     right_layout:add(cpugraph)
-    right_layout:add(cpuicon)
- 
     right_layout:add(cpuwidget)
+    right_layout:add(cpuicon) 
+    right_layout:add(tzswidget)
+    right_layout:add(separator)
+    right_layout:add(batwidget)
+    right_layout:add(baticon)
     right_layout:add(separator)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -404,7 +425,8 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+    awful.key({ }, "F12", function () scratch.drop("yakuake", "top", "center", 0.9, 0.45) end)
 )
 
 -- Bind all key numbers to tags.
