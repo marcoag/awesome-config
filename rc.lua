@@ -92,13 +92,9 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
---tags = {
---    names = {"term", "web", "robo", "file", "irc", "vps", "spoty", "8", "9"}
---    layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2] }
---}
 
  tags = {
-    names  = { "term", "www", "robo", "file", "irc", "vps", "spoty", 8, 9 },
+    names  = { "term", "www", "robo", "files", "irc", "vps", "spoty", 8, 9 },
     layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2] }
 }
 
@@ -171,7 +167,19 @@ neticon_down:set_image(awful.util.getdir("config") .. "/icons/down.png")
 netwidget = wibox.widget.textbox()
 
 -- Register widget
-vicious.register(netwidget, vicious.widgets.net,  '<span color="#7F9F7F">${eth0 down_kb}</span> <span color="#CC9393">${eth0 up_kb}</span>', 3)
+--    vicious.register(netwidget, vicious.widgets.net,  '<span color="#7F9F7F">${eth0 down_kb}</span> <span color="#CC9393">${eth0 up_kb}</span>', 3)
+
+vicious.register(netwidget, vicious.widgets.net, 
+    function (widget, args)
+        if args["{enx9cebe800ae28 carrier}"] == 1 then 
+            return '<span color="#7F9F7F">'..args['{enx9cebe800ae28 down_kb}']..'</span> <span color="#CC9393">'..args['{enx9cebe800ae28 up_kb}']..'</span>'
+        elseif args["{wlp3s0 carrier}"] == 1 then 
+            return '<span color="#7F9F7F">'..args['{wlp3s0 down_kb}']..'</span> <span color="#CC9393">'..args['{wlp3s0 up_kb}']..'</span>'
+        else
+            return '<span color="#7F9F7F">x.x</span> <span color="#CC9393">x.x</span>'
+        end 
+    end, 1)
+
 --- }}}
 
 -- Initialize widget
