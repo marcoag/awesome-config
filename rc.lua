@@ -457,7 +457,7 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ }, "F12", function () scratch.drop("yakuake", "top", "center", 0.9, 0.45) end)
+    awful.key({ }, "F12", function () scratch.drop("yakuake", "top", "center", 0.9, 0.51) end)
 )
 
 -- Bind all key numbers to tags.
