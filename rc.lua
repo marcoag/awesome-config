@@ -94,8 +94,8 @@ end
 -- Define a tag table which hold all screen tags.
 
  tags = {
-    names  = { "term", "www", "robo", "files", "irc", "vps", "spoty", 8, 9 },
-    layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[2], layouts[2], layouts[1], layouts[2], layouts[2] }
+    names  = { "term", "www", "robo", "files", "irc", "vps", "music", 8, 9 },
+    layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[10], layouts[2], layouts[1], layouts[2], layouts[2] }
 }
 
 for s = 1, screen.count() do
