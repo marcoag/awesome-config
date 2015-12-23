@@ -457,7 +457,14 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ }, "F12", function () scratch.drop("yakuake", "top", "center", 0.9, 0.51) end)
+    awful.key({ }, "F12", function () scratch.drop("yakuake", "top", "center", 0.9, 0.51) end),
+    awful.key({ modkey, "Shift",  }, "F2",    
+    function ()
+        awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, }, mypromptbox[mouse.screen].widget, 
+        function (s)
+            awful.tag.selected().name = s
+        end)
+    end)
 )
 
 -- Bind all key numbers to tags.
