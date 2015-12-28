@@ -95,7 +95,7 @@ end
 
  tags = {
     names  = { "term", "robo", "www", "files", "music", "irc", "vps", 8, 9 },
-    layout = { layouts[2], layouts[1], layouts[2], layouts[1], layouts[10], layouts[2], layouts[1], layouts[2], layouts[2] }
+    layout = { layouts[2], layouts[2], layouts[10], layouts[1], layouts[10], layouts[2], layouts[2], layouts[1], layouts[2] }
 }
 
 for s = 1, screen.count() do
