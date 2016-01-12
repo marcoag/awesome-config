@@ -229,6 +229,12 @@ vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone0"
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
+-- Orglendar
+local orglendar = require('orglendar')
+orglendar.files = { "/home/username/Documents/Notes/work.org",    -- Specify here all files you want to be parsed, separated by comma.
+                      "/home/username/Documents/stuff/home.org" }
+orglendar.register(mytextclock)
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 mywibox2 = {}
