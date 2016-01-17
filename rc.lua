@@ -231,8 +231,8 @@ mytextclock = awful.widget.textclock()
 
 -- Orglendar
 local orglendar = require('orglendar')
-orglendar.files = { "/home/username/Documents/Notes/work.org",    -- Specify here all files you want to be parsed, separated by comma.
-                      "/home/username/Documents/stuff/home.org" }
+orglendar.files = { "/home/marcog/Documents/work.todo.org",    -- Specify here all files you want to be parsed, separated by comma.
+                      "/home/marcog/Documents/home.todo.org" }
 orglendar.register(mytextclock)
 
 -- Create a wibox for each screen and add it
@@ -436,6 +436,13 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 1%+") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 1%-") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
+    
+    -- Brightness
+    
+    awful.key({ }, "XF86MonBrightnessDown", function ()
+    awful.util.spawn("xbacklight -dec 15") end),
+    awful.key({ }, "XF86MonBrightnessUp", function ()
+    awful.util.spawn("xbacklight -inc 15") end),
 
     -- Layout
     awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn("setxkbmap -option grp:alt_shift_toggle us,us") end),
