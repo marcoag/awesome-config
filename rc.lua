@@ -53,7 +53,7 @@ end
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/wombat/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -94,8 +94,8 @@ end
 -- Define a tag table which hold all screen tags.
 
  tags = {
-    names  = { "term", "robo", "www", "files", "music", "irc", "vps", 8, 9 },
-    layout = { layouts[2], layouts[2], layouts[10], layouts[1], layouts[10], layouts[2], layouts[2], layouts[1], layouts[2] }
+    names  = { "term", "robo", "www", "edit", "files", "irc", "vps", "music", 8, 9 },
+    layout = { layouts[2], layouts[2], layouts[10], layouts[4], layouts[10], layouts[2], layouts[2], layouts[10],  layouts[1], layouts[2] }
 }
 
 for s = 1, screen.count() do
