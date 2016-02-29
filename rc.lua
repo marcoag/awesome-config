@@ -12,7 +12,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 require("volume")
-require("monitor")
 -- Load Debian menu entries
 require("debian.menu")
 local scratch = require("scratch")
@@ -95,7 +94,7 @@ end
 
  tags = {
     names  = { "1.term", "2.robo", "3.www", "4.edit", "5.files", "6.irc", "7.vps", "8.music", 9 },
-    layout = { layouts[2], layouts[2], layouts[10], layouts[4], layouts[10], layouts[2], layouts[2], layouts[10],  layouts[1] }
+    layout = { layouts[2], layouts[1], layouts[10], layouts[4], layouts[10], layouts[2], layouts[2], layouts[10],  layouts[1] }
 }
 
 for s = 1, screen.count() do
@@ -477,7 +476,8 @@ clientkeys = awful.util.table.join(
         function (s)
             awful.tag.selected().name = s
         end)
-    end)
+    end),
+    awful.key({ modkey,           }, "b", function () awful.util.spawn("iceweasel") end)
 )
 
 -- Bind all key numbers to tags.
