@@ -13,8 +13,8 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 vicious = require("vicious")
 
--- Load Debian menu entries
-require("debian.menu")
+-- Load Arch menu entries
+require("archmenu")
 
 -- Load Volume Widget
 require("volume")
@@ -56,7 +56,7 @@ end
 beautiful.init(awful.util.get_themes_dir() .. "zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "lxterminal"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -114,7 +114,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
+				    { "Applications", xdgmenu },
                                     { "open terminal", terminal }
                                   }
                         })
