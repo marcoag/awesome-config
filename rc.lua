@@ -181,25 +181,25 @@ vicious.register(netwidget, vicious.widgets.net,
 --- }}}
 
 -- Keyboard map indicator and changer
-kbdcfg = {}
-kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { { "us", "" , "us" }, { "es", "" , "es" }, {"gb", "", "gb"} } 
-kbdcfg.current = 1  -- us is our default layout
-kbdcfg.widget = wibox.widget.textbox()
-kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
-kbdcfg.switch =
-    function ()
-        kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
-        local t = kbdcfg.layout[kbdcfg.current]
-        kbdcfg.widget:set_text(" " .. t[3] .. " ")
-        os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
-    end
+-- kbdcfg = {}
+-- kbdcfg.cmd = "setxkbmap"
+-- kbdcfg.layout = { { "us", "" , "us" }, { "es", "" , "es" }, {"gb", "", "gb"} } 
+-- kbdcfg.current = 1  -- us is our default layout
+-- kbdcfg.widget = wibox.widget.textbox()
+-- kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
+-- kbdcfg.switch =
+--    function ()
+--        kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+--        local t = kbdcfg.layout[kbdcfg.current]
+--        kbdcfg.widget:set_text(" " .. t[3] .. " ")
+--        os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+--    end
 
 
 -- Mouse bindings
-kbdcfg.widget:buttons(
-awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
-)
+-- kbdcfg.widget:buttons(
+-- awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
+--)
 
 -- Initialize widget
 cpuwidget = wibox.widget.textbox()
@@ -343,7 +343,7 @@ awful.screen.connect_for_each_screen(function(s)
             batwidget,
             baticon,
             separator,
-            kbdcfg.widget,
+            --kbdcfg.widget,
             separator,
             mytextclock,
             s.mylayoutbox,
@@ -504,6 +504,10 @@ clientkeys = awful.util.table.join(
         awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
 
         -- Layout
+	awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn("setxkbmap us") end), 
+	awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("setxkbmap es") end),
+
+	-- Brightness
         awful.key({ }, "XF86MonBrightnessDown", function ()
         awful.util.spawn("xbacklight -dec 15") end),
         awful.key({ }, "XF86MonBrightnessUp", function ()
