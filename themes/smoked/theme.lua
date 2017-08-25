@@ -25,7 +25,7 @@ themedir      = themes .. themename
 snail = 1
 
 if snail == 1 then
-	wallpaper1    = themedir .. "/snail.jpg"
+	wallpaper1    = themedir .. "/babel.jpg"
 else
 	wallpaper1    = themedir .. "/background.png"
 end

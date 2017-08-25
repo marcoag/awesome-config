@@ -53,7 +53,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.get_themes_dir() .. "zenburn/theme.lua")
+-- beautiful.init(awful.util.get_themes_dir("config") .. "zenburn-custom/theme.lua")
+beautiful.init("~/.config/awesome/themes/smoked/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -289,7 +290,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1.term", "2.term", "3.www", "4.edit", "5.files", "6.irc", "7.vps", "8.music", "9" }, s, { awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[10], awful.layout.layouts[2], awful.layout.layouts[2] , awful.layout.layouts[10], awful.layout.layouts[1] } )
+    awful.tag({ "1.term", "2.term", "3.www", "4.edit", "5.files", "6.irc", "7.vps", "8.music", "9.slack" }, s, { awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[10], awful.layout.layouts[2], awful.layout.layouts[2] , awful.layout.layouts[10], awful.layout.layouts[10] } )
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
