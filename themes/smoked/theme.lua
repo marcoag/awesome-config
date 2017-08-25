@@ -135,7 +135,7 @@ theme.layout_tile = themedir .. "/layouts/tile.png"
 theme.layout_tiletop = themedir .. "/layouts/tiletop.png"
 
 --theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
-theme.awesome_icon = themedir .. "/awesome-icon-3.png"
+theme.awesome_icon = themedir .. "/awesome-icon.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
