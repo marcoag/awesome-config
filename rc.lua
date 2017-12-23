@@ -462,7 +462,10 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Yakuake 
-    awful.key({ }, "F12", function () awful.util.spawn("yakuake") end )
+    awful.key({ }, "F12", function () awful.util.spawn("yakuake") end ),
+    
+    -- Firefox
+    awful.key({ modkey }, "b", function () awful.util.spawn("firefox") end )
 )
 
 clientkeys = awful.util.table.join(
@@ -696,3 +699,7 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Applications to run on startup
+awful.util.spawn("blueman-applet")
+
