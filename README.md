@@ -7,18 +7,14 @@ There are two versions, the master is the one I was using on a Debian system and
 System
 ------
 
-Master branch was Running on a Debian stretch/sid for amd64 with:
-
-awesome v4.2
-
-Arch branch, is currently running on an updated Arch Linux for amd64 with 
+Config currently running on an updated Arch Linux for amd64 with 
  
-awesome v4.2 (Human after all)
+Awesome v4.2 (Human after all)
  • Compiled against Lua 5.3.4 (running with Lua 5.3)
  • D-Bus support: ✔
  • execinfo support: ✔
  • xcb-randr version: 1.5
- • LGI version: 0.9.1
+ • LGI version: 0.9.2
 
 Dependencies
 ------------
