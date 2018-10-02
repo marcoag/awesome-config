@@ -25,7 +25,7 @@ themedir      = themes .. themename
 snail = 1
 
 if snail == 1 then
-	wallpaper1    = themedir .. "/snail.jpg"
+	wallpaper1    = themedir .. "/babel.jpg"
 else
 	wallpaper1    = themedir .. "/background.png"
 end
@@ -135,7 +135,7 @@ theme.layout_tile = themedir .. "/layouts/tile.png"
 theme.layout_tiletop = themedir .. "/layouts/tiletop.png"
 
 --theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
-theme.awesome_icon = themedir .. "/awesome-icon-3.png"
+theme.awesome_icon = themedir .. "/awesome-icon.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80

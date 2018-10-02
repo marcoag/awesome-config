@@ -13,8 +13,8 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 vicious = require("vicious")
 
--- Load Debian menu entries
-require("debian.menu")
+-- Load Arch menu entries
+require("archmenu")
 
 -- Load Volume Widget
 require("volume")
@@ -53,10 +53,12 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.get_themes_dir() .. "zenburn/theme.lua")
+-- beautiful.init(awful.util.get_themes_dir("config") .. "zenburn-custom/theme.lua")
+beautiful.init("~/.config/awesome/themes/smoked/theme.lua")
+beautiful.font = "DejaVu Sans 6"
 
 -- This is used later as the default terminal and editor to run.
-terminal = "lxterminal"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -114,7 +116,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
+				    { "Applications", xdgmenu },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -181,25 +183,25 @@ vicious.register(netwidget, vicious.widgets.net,
 --- }}}
 
 -- Keyboard map indicator and changer
-kbdcfg = {}
-kbdcfg.cmd = "setxkbmap"
-kbdcfg.layout = { { "us", "" , "us" }, { "es", "" , "es" }, {"gb", "", "gb"} } 
-kbdcfg.current = 1  -- us is our default layout
-kbdcfg.widget = wibox.widget.textbox()
-kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
-kbdcfg.switch =
-    function ()
-        kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
-        local t = kbdcfg.layout[kbdcfg.current]
-        kbdcfg.widget:set_text(" " .. t[3] .. " ")
-        os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
-    end
+-- kbdcfg = {}
+-- kbdcfg.cmd = "setxkbmap"
+-- kbdcfg.layout = { { "us", "" , "us" }, { "es", "" , "es" }, {"gb", "", "gb"} } 
+-- kbdcfg.current = 1  -- us is our default layout
+-- kbdcfg.widget = wibox.widget.textbox()
+-- kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
+-- kbdcfg.switch =
+--    function ()
+--        kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+--        local t = kbdcfg.layout[kbdcfg.current]
+--        kbdcfg.widget:set_text(" " .. t[3] .. " ")
+--        os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+--    end
 
 
 -- Mouse bindings
-kbdcfg.widget:buttons(
-awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
-)
+-- kbdcfg.widget:buttons(
+-- awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
+--)
 
 -- Initialize widget
 cpuwidget = wibox.widget.textbox()
@@ -289,7 +291,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1.term", "2.term", "3.www", "4.edit", "5.files", "6.irc", "7.vps", "8.music", "9" }, s, { awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[10], awful.layout.layouts[2], awful.layout.layouts[2] , awful.layout.layouts[10], awful.layout.layouts[1] } )
+    awful.tag({ "1.term", "2.term", "3.www", "4.www", "5.edit", "6.files", "7.music", "8.slack" }, s, { awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[10], awful.layout.layouts[10], awful.layout.layouts[10] } )
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -343,7 +345,7 @@ awful.screen.connect_for_each_screen(function(s)
             batwidget,
             baticon,
             separator,
-            kbdcfg.widget,
+            --kbdcfg.widget,
             separator,
             mytextclock,
             s.mylayoutbox,
@@ -461,7 +463,10 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Yakuake 
-    awful.key({ }, "F12", function () awful.util.spawn("yakuake") end )
+    awful.key({ }, "F12", function () awful.util.spawn("yakuake") end ),
+    
+    -- Firefox
+    awful.key({ modkey }, "b", function () awful.util.spawn("firefox") end )
 )
 
 clientkeys = awful.util.table.join(
@@ -504,6 +509,10 @@ clientkeys = awful.util.table.join(
         awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
 
         -- Layout
+	awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn("setxkbmap us") end), 
+	awful.key({ modkey, "Shift" }, "e", function () awful.util.spawn("setxkbmap es") end),
+
+	-- Brightness
         awful.key({ }, "XF86MonBrightnessDown", function ()
         awful.util.spawn("xbacklight -dec 15") end),
         awful.key({ }, "XF86MonBrightnessUp", function ()
@@ -691,3 +700,7 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Applications to run on startup
+awful.util.spawn("blueman-applet")
+
