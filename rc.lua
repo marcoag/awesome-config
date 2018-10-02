@@ -55,6 +55,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(awful.util.get_themes_dir("config") .. "zenburn-custom/theme.lua")
 beautiful.init("~/.config/awesome/themes/smoked/theme.lua")
+beautiful.font = "DejaVu Sans 6"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
