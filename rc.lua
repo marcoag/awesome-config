@@ -17,7 +17,7 @@ vicious = require("vicious")
 require("archmenu")
 
 -- Load Volume Widget
-require("volume")
+-- require("volume")
 
 awful.util.spawn_with_shell("xcompmgr -cF &")
 -- autostarting programs
@@ -504,9 +504,9 @@ clientkeys = awful.util.table.join(
         awful.key({ modkey }, "q",  function () awful.util.spawn("xscreensaver-command --lock") end),
 
         -- Audio Special Keys
-        awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 1%+") end),
-        awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 1%-") end),
-        awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
+        awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -c 0 set Master 1%+") end),
+        awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -c 0 set Master 1%-") end),
+        awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
 
         -- Layout
 	awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn("setxkbmap us") end), 
