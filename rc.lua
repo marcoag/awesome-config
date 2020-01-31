@@ -13,11 +13,11 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 vicious = require("vicious")
 
--- Load Arch menu entries
-require("archmenu")
+-- Load Debian menu entries
+local debian = require("debian.menu")
 
 -- Load Volume Widget
-require("volume")
+-- require("volume")
 
 awful.util.spawn_with_shell("xcompmgr -cF &")
 -- autostarting programs
@@ -115,11 +115,22 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end}
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-				    { "Applications", xdgmenu },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+local myterminalmenu = { "open terminal", terminal }
+
+if has_fdo then
+    mymainmenu = freedesktop.menu.build({
+        before = { myawesomemenu }, 
+        after =  { myterminalmenu }
+    })
+else
+    mymainmenu = awful.menu({
+        items = {
+                  myawesomemenu,
+                  { "Debian", debian.menu.Debian_menu.Debian },
+                  myterminalmenu,
+                }
+    })
+end
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -503,6 +514,9 @@ clientkeys = awful.util.table.join(
         -- Lock screen
         awful.key({ modkey }, "q",  function () awful.util.spawn("xscreensaver-command --lock") end),
 
+        -- Green Urxvt (for remote connections)
+        awful.key({ modkey }, "g" , function () awful.util.spawn("urxvt -fg green -cr green -bd green") end),
+
         -- Audio Special Keys
         awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 1%+") end),
         awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 1%-") end),
@@ -566,7 +580,12 @@ for i = 1, 9 do
                           end
                       end
                   end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+                  {description = "toggle focused client on tag #" .. i, group = "tag"}),
+        awful.key({ }, "XF86AudioPlay",
+                function () 
+                    awful.util.spawn_with_shell("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
+        awful.key({ }, "XF86AudioNext", function () awful.util.spawn_with_shell("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end),
+        awful.key({ }, "XF86AudioPrev", function () awful.util.spawn_with_shell("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end)
     )
 end
 

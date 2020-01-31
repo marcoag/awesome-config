@@ -25,9 +25,9 @@ themedir      = themes .. themename
 snail = 1
 
 if snail == 1 then
-	wallpaper1    = themedir .. "/babel.jpg"
+	wallpaper1    = themedir .. "/oc.jpg"
 else
-	wallpaper1    = themedir .. "/background.png"
+	wallpaper1    = themedir .. "/babel.png"
 end
 wallpaper2    = themedir .. "/background.jpg"
 wallpaper3    = sharedthemes .. "/zenburn/zenburn-background.png"
