@@ -502,6 +502,14 @@ clientkeys = awful.util.table.join(
 
         -- Lock screen
         awful.key({ modkey }, "q",  function () awful.util.spawn("xscreensaver-command --lock") end),
+    
+        -- Color Urxvts (for remote connections)
+        awful.key({ modkey, "Shift" }, "g" , function () awful.util.spawn("urxvt -fg green -cr green -bd green") end),
+        awful.key({ modkey, "Shift" }, "r" , function () awful.util.spawn("urxvt -fg red -cr red -bd red") end),
+        awful.key({ modkey, "Shift" }, "y" , function () awful.util.spawn("urxvt -fg yellow -cr yellow -bd yellow") end),
+        awful.key({ modkey, "Shift" }, "o" , function () awful.util.spawn("urxvt -fg orange -cr orange -bd orange") end),
+        awful.key({ modkey, "Shift" }, "b" , function () awful.util.spawn("urxvt -fg cyan -cr cyan -bd cyan") end),
+        awful.key({ modkey, "Shift" }, "p" , function () awful.util.spawn("urxvt -fg pink -cr pink -bd pink") end),
 
         -- Audio Special Keys
         awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -c 0 set Master 1%+") end),
