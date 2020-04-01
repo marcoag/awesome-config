@@ -22,8 +22,9 @@ require("archmenu")
 awful.util.spawn_with_shell("xcompmgr -cF &")
 -- autostarting programs
 awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)")
-awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (xscreensaver -no-splash&)")
-awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (bluedevil-monolithic &)")
+awful.util.spawn_with_shell("pgrep -u $USER -x xscreensaver -no-splash > /dev/null || (xscreensaver -no-splash&)")
+awful.util.spawn_with_shell("pgrep -u $USER -x bluedevil-monolithic > /dev/null || (bluedevil-monolithic &)")
+awful.util.spawn_with_shell("pgrep -u $USER -x optimus-manager-qt > /dev/null || (optimus-manager-qt &)")
 
 
 -- {{{ Error handling
@@ -55,7 +56,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(awful.util.get_themes_dir("config") .. "zenburn-custom/theme.lua")
 beautiful.init("~/.config/awesome/themes/smoked/theme.lua")
-beautiful.font = "DejaVu Sans 6"
+beautiful.font = "DejaVu Sans 10"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
