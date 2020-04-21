@@ -51,9 +51,9 @@ if awful.util.file_readable(config .. "/vain/init.lua") then
 end
 --}}}
 if snail == 1 then
-    theme.font = "Droid Sans 12"
-    theme.tasklist_font = "Droid Sans 12"
-    theme.taglist_font = "Droid Sans 14"
+    theme.font = "Droid Sans 8"
+    theme.tasklist_font = "Droid Sans 8"
+    theme.taglist_font = "Droid Sans 9"
     theme.bg_normal     = "#61645B"
     theme.bg_focus      = "#8D8873"
     theme.bg_urgent     = "#DC8536"
@@ -64,7 +64,7 @@ if snail == 1 then
     theme.batt_danger	= "#CBF045"
     theme.batt_dying	= "#FC5D44"
 else
-    theme.font          = "sans 12"
+    theme.font          = "sans 8"
     theme.bg_normal     = "#7f7f7dee"
     theme.bg_focus      = "#616163ee"
     theme.bg_urgent     = "#ff0000ee"

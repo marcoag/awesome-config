@@ -292,7 +292,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1.term", "2.term", "3.www", "4.www", "5.edit", "6.files", "7.music", "8.slack" }, s, { awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[10], awful.layout.layouts[10], awful.layout.layouts[10] } )
+    awful.tag({ "1.term", "2.term", "3.www", "4.www", "5.edit", "6.files", "7.music", "8.slack" }, s, { awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[10], awful.layout.layouts[10] } )
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -511,6 +511,7 @@ clientkeys = awful.util.table.join(
         awful.key({ modkey, "Shift" }, "o" , function () awful.util.spawn("urxvt -fg orange -cr orange -bd orange") end),
         awful.key({ modkey, "Shift" }, "b" , function () awful.util.spawn("urxvt -fg cyan -cr cyan -bd cyan") end),
         awful.key({ modkey, "Shift" }, "p" , function () awful.util.spawn("urxvt -fg pink -cr pink -bd pink") end),
+        awful.key({ modkey, "Shift" }, "u" , function () awful.util.spawn("urxvt -fg purple -cr pink -bd pink") end),
 
         -- Audio Special Keys
         awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -c 0 set Master 1%+") end),
