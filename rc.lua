@@ -17,13 +17,14 @@ vicious = require("vicious")
 require("archmenu")
 
 -- Load Volume Widget
-require("volume")
+-- require("volume")
 
 awful.util.spawn_with_shell("xcompmgr -cF &")
 -- autostarting programs
 awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)")
-awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (xscreensaver -no-splash&)")
-awful.util.spawn_with_shell("pgrep -u $USER -x nm-applet > /dev/null || (bluedevil-monolithic &)")
+awful.util.spawn_with_shell("pgrep -u $USER -x xscreensaver -no-splash > /dev/null || (xscreensaver -no-splash&)")
+awful.util.spawn_with_shell("pgrep -u $USER -x bluedevil-monolithic > /dev/null || (bluedevil-monolithic &)")
+awful.util.spawn_with_shell("pgrep -u $USER -x optimus-manager-qt > /dev/null || (optimus-manager-qt &)")
 
 
 -- {{{ Error handling
@@ -55,7 +56,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(awful.util.get_themes_dir("config") .. "zenburn-custom/theme.lua")
 beautiful.init("~/.config/awesome/themes/smoked/theme.lua")
-beautiful.font = "DejaVu Sans 6"
+beautiful.font = "DejaVu Sans 10"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -291,7 +292,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1.term", "2.term", "3.www", "4.www", "5.edit", "6.files", "7.music", "8.slack" }, s, { awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[10], awful.layout.layouts[10], awful.layout.layouts[10] } )
+    awful.tag({ "1.term", "2.term", "3.www", "4.www", "5.edit", "6.files", "7.music", "8.slack" }, s, { awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[2], awful.layout.layouts[10], awful.layout.layouts[10] } )
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -502,11 +503,20 @@ clientkeys = awful.util.table.join(
 
         -- Lock screen
         awful.key({ modkey }, "q",  function () awful.util.spawn("xscreensaver-command --lock") end),
+    
+        -- Color Urxvts (for remote connections)
+        awful.key({ modkey, "Shift" }, "g" , function () awful.util.spawn("urxvt -fg green -cr green -bd green") end),
+        awful.key({ modkey, "Shift" }, "r" , function () awful.util.spawn("urxvt -fg red -cr red -bd red") end),
+        awful.key({ modkey, "Shift" }, "y" , function () awful.util.spawn("urxvt -fg yellow -cr yellow -bd yellow") end),
+        awful.key({ modkey, "Shift" }, "o" , function () awful.util.spawn("urxvt -fg orange -cr orange -bd orange") end),
+        awful.key({ modkey, "Shift" }, "b" , function () awful.util.spawn("urxvt -fg cyan -cr cyan -bd cyan") end),
+        awful.key({ modkey, "Shift" }, "p" , function () awful.util.spawn("urxvt -fg pink -cr pink -bd pink") end),
+        awful.key({ modkey, "Shift" }, "u" , function () awful.util.spawn("urxvt -fg purple -cr pink -bd pink") end),
 
         -- Audio Special Keys
-        awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 1%+") end),
-        awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 1%-") end),
-        awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master toggle") end),
+        awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -c 0 set Master 1%+") end),
+        awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -c 0 set Master 1%-") end),
+        awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
 
         -- Layout
 	awful.key({ modkey, "Shift" }, "u", function () awful.util.spawn("setxkbmap us") end), 
